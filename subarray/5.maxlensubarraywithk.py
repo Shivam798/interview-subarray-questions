@@ -8,8 +8,8 @@ t3=15
 arr3=[-13 ,0 ,6 ,15 ,16 ,2 ,15 ,-12 ,17 ,-16 ,0 ,-3 ,19 ,-3 ,2 ,-9,-6]
 
 # maxisub = hashing 
-# solv2 = two pointer with starting and ending points of subarray
-# solv2 = two pointer approach
+# solv3 = two pointer with starting and ending points of subarray
+
 
 def maxisub(arr,t):
     d={}
@@ -28,37 +28,6 @@ def maxisub(arr,t):
             d[presum]=i
     return length,endidn-length+1,endidn
 
-
-# This two pointer approach does not work with negative number like e.g arr3  
-def solv2(arr,t):
-    i,j,sum,maxlength=0,0,0,0
-    start,end=0,0
-    while j<len(arr):
-        sum+=arr[j]
-        if sum==t:
-            maxlength=max(maxlength,j-i+1)
-            start=i
-            end=j
-            j+=1
-        elif sum<t:
-            j+=1
-        elif sum>t:
-            while sum>t:
-                sum-=arr[i]
-                i+=1
-            # following line does not contributes in finding maxlength as we are increasing i but 
-            # it is making more subarray (with req. target sum but with smaller subarray) So they are optional to write
-            # they are useful while someone ask to find all subarray with req. target sum.
-             
-            # if sum==t:
-            #     maxlength=max(maxlength,j-i+1)
-                
-            j+=1
-        
-
-    
-    return maxlength ,start,end
-
 def solv3(arr,t):
     i,j,sum,maxlength=0,0,0,0
     while j<len(arr):
@@ -73,6 +42,6 @@ def solv3(arr,t):
     return maxlength 
 
 
-print(solv3(arr2,t2))
-print(solv3(arr3,t3))
-print(solv3(arr1,t1))
+print(maxisub(arr2,t2))
+
+
